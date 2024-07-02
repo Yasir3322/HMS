@@ -14,6 +14,10 @@ const HostelCard = (props) => {
 
   let items = props.images.map((image) => `${baseUrl}/${image}`);
 
+  function handleViewOnMap() {
+    navigate("/Map");
+  }
+
   return (
     <div className="grid grid-cols-2">
       <div>
@@ -38,7 +42,12 @@ const HostelCard = (props) => {
 
           <div className="flex align-middle justify-between mt-2">
             <div className="flex flex-col gap-0 leading-3">
-              <h3 className="text-[#39573E] text-xl">View on map</h3>
+              <button
+                onClick={handleViewOnMap}
+                className="text-[#39573E] text-xl"
+              >
+                View on map
+              </button>
               <div className="flex align-middle items-center gap-2">
                 {props.category == "boys" ? <IoMdMale /> : <IoIosFemale />}
                 <h1 className="text-lg">{props.category}</h1>

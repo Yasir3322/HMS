@@ -47,6 +47,7 @@ import AdminPostHostel from "./Pages/AdminDashboard/pages/PostHostel.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import UpdatePassword from "./Pages/Signin/updatepass.jsx";
+import Map from "./Pages/Map/Map.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -66,6 +67,7 @@ const router = createBrowserRouter(
       <Route path="ForgotPass" element={<ForgotPass />} />
       <Route path="UpdatePass/:id" element={<UpdatePassword />} />
       <Route path="CheckInpox" element={<CheckInboxPage />} />
+      <Route path="Map" element={<Map />} />
 
       <Route path="UserDashboard" element={<UserDashboard />}>
         <Route path="" element={<UserWelcomDashboard />} />

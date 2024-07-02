@@ -156,6 +156,7 @@ const CreatePassPage = () => {
 
   async function handleSignInSubmit(e) {
     e.preventDefault();
+    console.log("called");
     let ValidateError = await SignInValidate();
     if (ValidateError) {
       console.log(ValidateError);
@@ -238,14 +239,14 @@ const CreatePassPage = () => {
             </div>
             <div className="bg-[#2991DC] mx-10 p-5 rounded-md text-white flex justify-center mt-5">
               {/* Sign in with Google button */}
-              <GoogleLogin
+              {/* <GoogleLogin
                 clientId="YOUR_GOOGLE_CLIENT_ID"
                 buttonText="Sign in with Google"
                 onSuccess={responseGoogle}
                 onFailure={onFailureGoogle}
                 cookiePolicy={"single_host_origin"}
                 className="font-serif text-2xl w-50"
-              />
+              /> */}
             </div>
             <div className="bg-[#2991DC] mx-10 p-5 rounded-md text-white flex justify-center mt-5">
               <button
@@ -288,9 +289,8 @@ const CreatePassPage = () => {
             </div>
             <div className="bg-[#2991DC] mx-10 p-5 rounded-md text-white flex justify-center mt-5">
               <button
-                onClick={() => handleSignInSubmit}
+                onClick={(e) => handleSignInSubmit(e)}
                 className="font-serif text-2xl"
-                type="submit"
               >
                 Sign in
               </button>

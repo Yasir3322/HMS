@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import * as yup from 'yup';
+import * as yup from "yup";
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().max(30).min(6).required()
-})
+  password: yup.string().max(30).min(6).required(),
+});
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   const validate = async () => {
-    let signIndata = { email, password }
+    let signIndata = { email, password };
     let isFormValid = await schema.isValid(signIndata);
     if (isFormValid) {
-      return null
+      return null;
     }
 
     const res = await schema.validate(signIndata).catch((err) => {
@@ -27,18 +27,21 @@ const Signin = () => {
       return null;
     });
     return res;
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     let ValidateError = await validate();
     if (ValidateError) {
-      return setError(ValidateError)
+      return setError(ValidateError);
     }
 
-    let { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/login`, { email, password });
-    console.log(data)
+    let { data } = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/api/v1/login`,
+      { email, password }
+    );
+    console.log(data);
 
     console.log("Email:", email);
     console.log("Password:", password);
