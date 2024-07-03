@@ -74,13 +74,13 @@ const createHostel = async (req, res) => {
 };
 
 const getAllHostels = async (req, res) => {
-  // const { status } = req.query;
+  const { status } = req.query;
 
-  // const hostels = await PostHostel.find({ status: status });
+  const hostels = await PostHostel.find({ status: status });
 
-  // res.status(200).json({ hostels });
-  const hostels = await PostHostel.find({});
   res.status(200).json({ hostels });
+  // const hostels = await PostHostel.find({});
+  // res.status(200).json({ hostels });
 };
 
 const getHostel = async (req, res) => {

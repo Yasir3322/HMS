@@ -4,12 +4,11 @@ import { useGlobalRegisterContext } from "../store/context/register-context";
 import { useGlobalAuthContext } from "../store/context/auth-context";
 
 const Header = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const { setContinueWithEmail, continueWithEmail,
-    setSignUp, signup } = useGlobalRegisterContext();
-  const { isAuthenticated, setIsAuthenticated } = useGlobalAuthContext()
+  const { setContinueWithEmail, continueWithEmail, setSignUp, signup } =
+    useGlobalRegisterContext();
+  const { isAuthenticated, setIsAuthenticated } = useGlobalAuthContext();
 
   function HandleRegisterClick() {
     setSignUp(!signup);
@@ -17,11 +16,11 @@ const Header = () => {
   }
 
   function handleLogOut() {
-    localStorage.removeItem('accesstoken')
-    localStorage.removeItem('refreshtoken')
-    localStorage.removeItem('role')
-    setIsAuthenticated(false)
-    navigate('/')
+    localStorage.removeItem("accesstoken");
+    localStorage.removeItem("refreshtoken");
+    localStorage.removeItem("role");
+    setIsAuthenticated(false);
+    navigate("/");
   }
 
   return (
@@ -53,18 +52,21 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          {!isAuthenticated ? <NavLink
-            to="/Register"
-            className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
-          >
-            Sign in
-          </NavLink> : <NavLink
-            to="/posthostel"
-            className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
-          >
-            Post Hostel
-          </NavLink>
-          }
+          {!isAuthenticated ? (
+            <NavLink
+              to="/Register"
+              className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
+            >
+              Sign in
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/posthostel"
+              className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
+            >
+              Post Hostel
+            </NavLink>
+          )}
         </li>
         {/* <li>
           <NavLink
@@ -75,25 +77,29 @@ const Header = () => {
           </NavLink>
         </li> */}
         <li>
-          {isAuthenticated && <button onClick={() => handleLogOut()}>Logout</button>}
+          {isAuthenticated && (
+            <button onClick={() => handleLogOut()}>Logout</button>
+          )}
         </li>
-        {
-          isAuthenticated && <li>
-            {localStorage.getItem('role') === 'user' ? <NavLink
-              to="/UserDashboard/dashboard"
-              className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
-            >
-              Dashboard
-            </NavLink> : <NavLink
-              to="/AdminDashboard/dashboard"
-              className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
-            >
-              Dashboard
-            </NavLink>}
-
+        {isAuthenticated && (
+          <li>
+            {localStorage.getItem("role") === "user" ? (
+              <NavLink
+                to="/UserDashboard"
+                className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
+              >
+                Dashboard
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/AdminDashboard"
+                className={({ isActive }) => `${isActive && "text-[#2296EA]"}`}
+              >
+                Dashboard
+              </NavLink>
+            )}
           </li>
-        }
-
+        )}
       </ul>
     </header>
   );

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Upload, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
 
 const PostHostel = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -104,11 +105,11 @@ const PostHostel = () => {
           data
         );
         if (data) {
-          alert("Hostel Post Successfully");
+          toast.info("Hostel Post Successfully");
         }
       } catch (error) {
         console.log("form submiting error", error);
-        alert("Error while posting hostel");
+        toast.info("Error while posting hostel");
       }
     }
   };
